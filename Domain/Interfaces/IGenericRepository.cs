@@ -18,5 +18,7 @@ namespace Domain.Interfaces
         Task<bool> SaveAllAsync();
 
         bool EntityExists(int id);
+
+        Task<int> CountAsync(ISpecification<T> spec);
     }
 }

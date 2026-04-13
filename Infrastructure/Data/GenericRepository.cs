@@ -1,5 +1,4 @@
 
-
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +16,15 @@ namespace Infrastructure.Data
         public void Add(T entity)
         {
             _context.Set<T>().Add(entity);
+        }
+
+        public async Task<int> CountAsync(ISpecification<T> spec)
+        {
+            var query = _context.Set<T>().AsQueryable();
+
+            query = spec.ApplyCriteria(query);
+
+            return await query.CountAsync();
         }
 
         public void Delete(T entity)
