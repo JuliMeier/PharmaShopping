@@ -22,9 +22,6 @@ Los secretos se almacenan localmente (no en Git) en `%APPDATA%\Microsoft\UserSec
 
 ---
 
-### Opción 3: Archivo .env (C
-
-**Permanentemente (Windows):** Agregar a Variables de Entorno del Sistema
 
 ### Opción 2: User Secrets (Recomendado para desarrollo local)
 
