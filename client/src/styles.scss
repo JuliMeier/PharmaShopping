@@ -1,0 +1,127 @@
+@use '@angular/material' as mat;
+@import "tailwindcss";
+
+// Paleta verde personalizada basada en #0F6E56
+$pharma-green-palette: (
+  0:   #000000,
+  10:  #002117,
+  20:  #04342C,
+  25:  #085041,
+  30:  #085041,
+  35:  #0A5C4A,
+  40:  #0F6E56,   // ← tu color principal (oscuro)
+  50:  #1D9E75,   // ← tu color secundario (claro)
+  60:  #5DCAA5,
+  70:  #9FE1CB,
+  80:  #C5EEE0,
+  90:  #E1F5EE,
+  95:  #F0FAF6,
+  98:  #F7FCFA,
+  99:  #FBFEFD,
+  100: #FFFFFF,
+  secondary: (
+    0:   #000000,
+    10:  #1A2B24,
+    20:  #2E4A3E,
+    25:  #386050,
+    30:  #427562,
+    35:  #4D8B74,
+    40:  #57A186,
+    50:  #72BBA0,
+    60:  #8ED4BA,
+    70:  #AAEBD4,
+    80:  #C5F2E7,
+    90:  #E0F8F2,
+    95:  #F0FCF9,
+    98:  #F7FEFB,
+    99:  #FBFFFD,
+    100: #FFFFFF,
+  ),
+  neutral: (
+    0:   #000000,
+    10:  #191C1B,
+    20:  #2D3130,
+    25:  #383C3B,
+    30:  #444846,
+    35:  #4F5452,
+    40:  #5C605E,
+    50:  #747876,
+    60:  #8E9290,
+    70:  #A9ADAB,
+    80:  #C4C8C6,
+    90:  #E0E4E2,
+    95:  #EFF2F0,
+    98:  #F7FAF8,
+    99:  #FAFDFB,
+    100: #FFFFFF,
+  ),
+  neutral-variant: (
+    0:   #000000,
+    10:  #141D1A,
+    20:  #28322E,
+    25:  #333D39,
+    30:  #3E4945,
+    35:  #4A5450,
+    40:  #56605C,
+    50:  #6E7974,
+    60:  #88938E,
+    70:  #A3ADA8,
+    80:  #BEC9C4,
+    90:  #DAE5DF,
+    95:  #E8F3ED,
+    98:  #F1FAF5,
+    99:  #F4FDF8,
+    100: #FFFFFF,
+  ),
+  error: (
+    0:   #000000,
+    10:  #410002,
+    20:  #690005,
+    25:  #7E0007,
+    30:  #93000A,
+    35:  #A80710,
+    40:  #BA1A1A,
+    50:  #DE3730,
+    60:  #FF5449,
+    70:  #FF897D,
+    80:  #FFB4AB,
+    90:  #FFDAD6,
+    95:  #FFEDEA,
+    98:  #FFF8F7,
+    99:  #FFFBFF,
+    100: #FFFFFF,
+  ),
+);
+
+html {
+  @include mat.theme((
+    color: (
+      primary: $pharma-green-palette,
+      tertiary: mat.$cyan-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+// Variables CSS para usar directamente en tus componentes
+:root {
+  --pharma-primary:    #0F6E56;   // verde oscuro (logo)
+  --pharma-secondary:  #1D9E75;   // verde medio (logo)
+  --pharma-accent:     #EF9F27;   // dorado (línea del logo)
+  --pharma-light:      #E1F5EE;   // fondo verde muy suave
+  --pharma-on-primary: #FFFFFF;   // texto sobre fondo verde
+}
