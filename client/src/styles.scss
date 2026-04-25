@@ -125,3 +125,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --pharma-light:      #E1F5EE;   // fondo verde muy suave
   --pharma-on-primary: #FFFFFF;   // texto sobre fondo verde
 }
+
+.mat-mdc-menu-panel {
+  --mat-menu-container-color: #ffffff;
+}
+
+
+
+.mat-mdc-select-panel {
+  --mat-select-panel-background-color: #ffffff;
+}
+
+button.match-input-height {
+  height: var(--mat-form-field-container-height) !important;
+}

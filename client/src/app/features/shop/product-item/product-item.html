@@ -1,0 +1,18 @@
+@if (product) {
+<mat-card appearance="raised" class="h-full flex flex-col">
+    <div class="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden rounded-t-lg">
+        <img src="{{product.imageUrl}}" alt="image of {{product.name}}" class="h-full w-auto object-contain">
+    </div>
+    <mat-card-content class="mt-2 flex-grow flex flex-col justify-between">
+        <h2 class="text-sm font-semibold uppercase line-clamp-2 mb-2">{{product.name}}</h2>
+        <p class="font-light text-base">{{product.price | currency}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-stroked-button class="w-full add-to-cart-btn flex items-center justify-center cursor-pointer gap-2" [style.color]="'#0F6E56'" [style.border-color]="'#0F6E56'">
+            <mat-icon>add_shopping_cart</mat-icon>
+            <span>Add to cart</span>
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+}

@@ -1,0 +1,16 @@
+.add-to-cart-btn {
+  transition: all 0.3s ease;
+  border-radius: 8px !important;
+  
+  &:hover {
+    background-color: #1D9E75 !important;  // Verde más suave
+    color: white !important;
+    border-color: #1D9E75 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(29, 158, 117, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
