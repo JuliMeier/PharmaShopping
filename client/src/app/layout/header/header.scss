@@ -6,8 +6,14 @@
   color: var(--pharma-on-primary);
 }
 
-.custom-badge .mat-icon{
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
+.custom-badge .mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+nav a.active {
+  color: var(--pharma-secondary) !important;
+  font-weight: 600;
+  
 }
