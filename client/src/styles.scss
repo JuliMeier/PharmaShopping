@@ -137,5 +137,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 button.match-input-height {
-  height: var(--mat-form-field-container-height) !important;
+  height: var(--mat-form-field-container-height, 56px) !important;
+  min-height: var(--mat-form-field-container-height, 56px) !important;
 }
+
+.mat-mdc-snack-bar-container.snack-error {
+  --mat-snack-bar-container-color: #b42318;
+  --mat-snack-bar-button-color: #ffffff;
+  --mat-snack-bar-supporting-text-color: #ffffff;
+}  
+
+.mat-mdc-snack-bar-container.snack-success {
+  --mat-snack-bar-container-color: #067647;
+  --mat-snack-bar-button-color: #ffffff;
+  --mat-snack-bar-supporting-text-color: #ffffff;
+}  
