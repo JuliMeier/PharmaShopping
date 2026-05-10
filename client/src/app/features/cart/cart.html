@@ -1,0 +1,14 @@
+<section>
+    <div class="mx-auto max-w-screen-xl flex items-start gap-6">
+        <div class="w-3/4">
+            @for (item of cartService.cart()?.items; track item.productId){
+               
+                <app-cart-item [item]="item"></app-cart-item>
+
+             } 
+        </div>
+        <div class="w-1/4">
+            <app-order-summary></app-order-summary>
+        </div>
+    </div>
+</section>

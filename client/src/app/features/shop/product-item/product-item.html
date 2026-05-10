@@ -7,8 +7,11 @@
         <h2 class="text-sm font-semibold uppercase line-clamp-2 mb-2">{{product.name}}</h2>
         <p class="font-light text-base">{{product.price | currency:'ARS':'symbol':'1.2-2':'es-AR' }}</p>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-stroked-button class="w-full add-to-cart-btn flex items-center justify-center cursor-pointer gap-2" [style.color]="'#0F6E56'" [style.border-color]="'#0F6E56'">
+    <mat-card-actions (click)="$event.stopPropagation()" >
+        <button mat-stroked-button 
+        class="w-full add-to-cart-btn flex items-center justify-center cursor-pointer gap-2"
+         [style.color]="'#0F6E56'" [style.border-color]="'#0F6E56'"
+         (click)="cartService.addItemToCart(product)">
             <mat-icon>add_shopping_cart</mat-icon>
             <span>Add to cart</span>
         </button>

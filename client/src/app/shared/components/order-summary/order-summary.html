@@ -1,0 +1,42 @@
+<div class="mx-auto max-w-4xl flex-1 space-y-6  w-full">
+    <div class="space-y-4 rounded-lg border border-gray-200 p-4" style="background-color: var(--mat-sys-surface)">
+        <p class="text-xl font-semibold" style="color: var(--mat-sys-on-surface)">Order summary</p>
+        <div class="space-y-4">
+            <div class="space-y-2">
+                <dl class="flex items-center justify-between gap-4">
+                    <dt class="font-medium text-gray-500">Subtotal</dt>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ cartService.totals()?.subtotal | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                </dl>
+                <dl class="flex items-center justify-between gap-4">
+                    <dt class="font-medium text-gray-500">Discount</dt>
+                    <dd class="font-medium" style="color: var(--pharma-primary)">-{{ cartService.totals()?.discount | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                </dl>
+                <dl class="flex items-center justify-between gap-4">
+                    <dt class="font-medium text-gray-500">Delivery fee</dt>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ cartService.totals()?.deliveryFee | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                </dl>
+                <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-4">
+                    <dt class="font-medium text-gray-500">Total</dt>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ cartService.totals()?.total | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                </dl>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <button routerLink="/checkout" mat-flat-button>Checkout</button>
+                <button routerLink="/shop" mat-button >Continue shopping</button>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-sm p-4">
+        <form class="space-y-2 flex flex-col p-2" action="">
+            <label class="mb-2 block text-sm font-medium" for="">
+                Do you have a discount code?
+            </label>
+            <mat-form-field >
+                <mat-label>Discount code</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <button mat-flat-button color="primary" class="w-full">Apply</button>
+        </form>
+    </div>
+</div>
