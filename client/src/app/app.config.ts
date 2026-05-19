@@ -2,13 +2,13 @@ import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideBro
 import { provideRouter } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
-
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
 import { loadingInterceptor } from './core/interceptors/loading-interceptor';
 import { Init } from './core/services/init';
 import { lastValueFrom } from 'rxjs';
+import { authInterceptor } from './core/interceptors/auth-interceptor';
 
 registerLocaleData(localeEsAr);
 
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor, authInterceptor])),
     { provide: LOCALE_ID, useValue: 'es-AR' },
     provideAppInitializer(() => initializeApp(inject(Init))())
   ]
