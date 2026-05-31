@@ -16,11 +16,23 @@ namespace Infrastructure.Data
                 var productsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
 
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
-                
-                if(products == null) return;
+
+                if (products == null) return;
 
                 context.Products.AddRange(products);
-                await context.SaveChangesAsync();   
+                await context.SaveChangesAsync();
+            }
+
+            if (!context.DeliveryMethods.Any())
+            {
+                var deliveryMethodsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/deliveryMethods.json");
+
+                var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
+
+                if (deliveryMethods == null) return;
+
+                context.DeliveryMethods.AddRange(deliveryMethods);
+                await context.SaveChangesAsync();
             }
         }
     }

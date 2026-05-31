@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CartItem, ShoppingCart } from '../../shared/models/cart';
 import { Product } from '../../shared/models/product';
 import { map } from 'rxjs';
+import { DeliveryMethod } from '../../shared/models/deliveryMethod';
 
 
 
@@ -17,12 +18,15 @@ export class CartService {
   itemCount = computed(() => {
     return this.cart()?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
   });
+
+  selectedDelivery = signal<DeliveryMethod | null>(null);
   totals = computed(() => {
     const cart = this.cart();
+    const delivery = this.selectedDelivery();
     if(!cart)  return null;
     const subtotal = cart.items.reduce((sum, item) => sum + item.price * item.quantity, 0) ?? 0;
-    const deliveryFee = subtotal > 100 ? 0 : 10;
-    const discount = subtotal > 200 ? subtotal * 0.1 : 0;
+    const deliveryFee = delivery ? delivery.price : 0;
+    const discount = subtotal > 200000 ? subtotal * 0.1 : 0;
     return { subtotal, deliveryFee, discount, total: subtotal + deliveryFee - discount };
   });
 
