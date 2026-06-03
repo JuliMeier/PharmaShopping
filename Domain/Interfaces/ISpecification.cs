@@ -9,6 +9,10 @@ namespace Domain.Interfaces
         Expression<Func<T, object>>? OrderBy { get; }
         Expression<Func<T, object>>? OrderByDescending { get; }
 
+        List<Expression<Func<T, object>>> Includes { get; }
+
+        List<string> IncludeStrings { get; } // Use include strings for EF Core's ThenInclude
+
         bool IsDistinct { get; }
 
         int Take { get; }
