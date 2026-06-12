@@ -6,6 +6,8 @@ namespace Domain.Entities.OrderAggregate
     {
         Pending,
         PaymentReceived,
-        PaymentFailed
+        PaymentFailed,
+
+        PaymentMismatch
     }
 }
