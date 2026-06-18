@@ -2,7 +2,7 @@
   {
     "Name": "Emulsión Corporal Hidratante PERPIEL EMULSION X400 GR",
     "Description": "Emulsión corporal hidratante para piel seca y sensible.",
-    "Price": 12000.00,
+    "Price": 8.50,
     "ImageUrl": "/images/products/emulsion-perpiel.png",
     "Type": "Cuidado Corporal",
     "Brand": "PERPIEL",
@@ -11,7 +11,7 @@
   {
     "Name": "Base de Maquillaje Rimmel Matte Foundation x 30 ml",
     "Description": "Base de maquillaje para piel normal a aceitosa.",
-    "Price": 42000.00,
+    "Price": 14.99,
     "ImageUrl": "/images/products/base-rimmel.png",
     "Type": "Maquillaje",
     "Brand": "Rimmel",
@@ -20,7 +20,7 @@
   {
     "Name": "Desodorante Dove Men Clin Cr Soft Solid x 58 g",
     "Description": "Desodorante para hombres con fragancia fresca.",
-    "Price": 4500.00,
+    "Price": 3.50,
     "ImageUrl": "/images/products/desodorante-dove-men.png",
     "Type": "Higiene",
     "Brand": "Dove",
@@ -29,7 +29,7 @@
   {
     "Name": "Máscara de Pestañas Maybelline Lash Sensational Sky High Cosmic",
     "Description": "Máscara de pestañas para dar volumen y longitud.",
-    "Price": 22000.00,
+    "Price": 12.99,
     "ImageUrl": "/images/products/mascara-maybelline.png",
     "Type": "Maquillaje",
     "Brand": "Maybelline",
@@ -38,7 +38,7 @@
   {
     "Name": "Base de Maquillaje L'Oréal París True Match Tono Beige Creme x 30 ml",
     "Description": "Base de maquillaje para piel normal a aceitosa.",
-    "Price": 29000.00,
+    "Price": 16.99,
     "ImageUrl": "/images/products/base-loreal.png",
     "Type": "Maquillaje",
     "Brand": "L'Oréal",
@@ -47,7 +47,7 @@
   {
     "Name": "Protector Térmico Tresemmé Spray x 120 ml",
     "Description": "Protector térmico para cabello contra el calor del secador.",
-    "Price": 12000.00,
+    "Price": 7.99,
     "ImageUrl": "/images/products/protector-tresemme.png",
     "Type": "Cabello",
     "Brand": "Tresemmé",
@@ -56,7 +56,7 @@
   {
     "Name": "Crema Facial Hidratante Nivea Soft x 200 ml",
     "Description": "Crema hidratante ligera para rostro y cuerpo.",
-    "Price": 9500.00,
+    "Price": 5.99,
     "ImageUrl": "/images/products/crema-nivea.png",
     "Type": "Cuidado Facial",
     "Brand": "Nivea",
@@ -65,7 +65,7 @@
   {
     "Name": "Shampoo Pantene Restauración x 400 ml",
     "Description": "Shampoo para cabello dañado y quebradizo.",
-    "Price": 8700.00,
+    "Price": 5.99,
     "ImageUrl": "/images/products/shampoo-pantene.png",
     "Type": "Cabello",
     "Brand": "Pantene",
@@ -74,7 +74,7 @@
   {
     "Name": "Acondicionador Dove Nutritive Solutions x 400 ml",
     "Description": "Acondicionador nutritivo para cabello suave y manejable.",
-    "Price": 8900.00,
+    "Price": 6.50,
     "ImageUrl": "/images/products/acondicionador-dove.png",
     "Type": "Cabello",
     "Brand": "Dove",
@@ -83,7 +83,7 @@
   {
     "Name": "Gel Antibacterial Rexona x 250 ml",
     "Description": "Gel antibacterial para manos con fragancia fresca.",
-    "Price": 3500.00,
+    "Price": 3.99,
     "ImageUrl": "/images/products/gel-rexona.png",
     "Type": "Higiene",
     "Brand": "Rexona",
@@ -92,7 +92,7 @@
   {
     "Name": "Protector Solar La Roche-Posay Anthelios SPF 50 x 200 ml",
     "Description": "Protección solar alta para piel sensible.",
-    "Price": 25000.00,
+    "Price": 19.99,
     "ImageUrl": "/images/products/protector-laroche.png",
     "Type": "Cuidado Facial",
     "Brand": "La Roche-Posay",
@@ -101,7 +101,7 @@
   {
     "Name": "Agua Micelar Garnier SkinActive x 400 ml",
     "Description": "Agua micelar para limpieza facial.",
-    "Price": 11000.00,
+    "Price": 6.99,
     "ImageUrl": "/images/products/agua-garnier.png",
     "Type": "Cuidado Facial",
     "Brand": "Garnier",
@@ -110,7 +110,7 @@
   {
     "Name": "Crema Antiarrugas L'Oréal Revitalift x 50 ml",
     "Description": "Crema antiarrugas para piel madura.",
-    "Price": 32000.00,
+    "Price": 17.99,
     "ImageUrl": "/images/products/crema-revitalift.png",
     "Type": "Cuidado Facial",
     "Brand": "L'Oréal",
@@ -119,7 +119,7 @@
   {
     "Name": "Perfume Carolina Herrera Good Girl x 80 ml",
     "Description": "Fragancia femenina sofisticada.",
-    "Price": 95000.00,
+    "Price": 89.99,
     "ImageUrl": "/images/products/perfume-ch.png",
     "Type": "Perfumería",
     "Brand": "Carolina Herrera",
@@ -128,7 +128,7 @@
   {
     "Name": "Perfume Hugo Boss Bottled x 100 ml",
     "Description": "Fragancia masculina clásica.",
-    "Price": 88000.00,
+    "Price": 79.99,
     "ImageUrl": "/images/products/perfume-hugo.png",
     "Type": "Perfumería",
     "Brand": "Hugo Boss",
@@ -137,7 +137,7 @@
   {
     "Name": "Labial Maybelline SuperStay Matte Ink x 5 ml",
     "Description": "Labial líquido de larga duración.",
-    "Price": 15000.00,
+    "Price": 10.99,
     "ImageUrl": "/images/products/labial-maybelline.png",
     "Type": "Maquillaje",
     "Brand": "Maybelline",
@@ -146,7 +146,7 @@
   {
     "Name": "Corrector L'Oréal Infallible Full Wear x 10 ml",
     "Description": "Corrector de alta cobertura para imperfecciones.",
-    "Price": 13000.00,
+    "Price": 11.99,
     "ImageUrl": "/images/products/corrector-loreal.png",
     "Type": "Maquillaje",
     "Brand": "L'Oréal",
@@ -155,7 +155,7 @@
   {
     "Name": "Crema de Manos Eucerin pH5 x 75 ml",
     "Description": "Crema para manos secas y sensibles.",
-    "Price": 7500.00,
+    "Price": 8.99,
     "ImageUrl": "/images/products/crema-eucerin.png",
     "Type": "Cuidado Corporal",
     "Brand": "Eucerin",

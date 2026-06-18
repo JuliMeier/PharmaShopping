@@ -28,7 +28,7 @@ namespace Infrastructure.Data
 
             if (!context.DeliveryMethods.Any())
             {
-                var deliveryMethodsData = await File.ReadAllTextAsync( path + @"/Data/SeedData/delivery.json");
+                var deliveryMethodsData = await File.ReadAllTextAsync(path + @"/Data/SeedData/deliveryMethods.json");
 
                 var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
 

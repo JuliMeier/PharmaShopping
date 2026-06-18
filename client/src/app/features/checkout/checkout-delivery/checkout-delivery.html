@@ -5,7 +5,7 @@
         <label class="delivery-option p-3 border border-gray-200 cursor-pointer w-full h-full">
             <mat-radio-button [checked]="cartService.selectedDelivery() === method" class="w-full h-full" [value]="method">
                 <div class="flex flex-col w-full h-full">
-                    <strong>{{method.shortName}} - {{method.price | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</strong>
+                    <strong>{{method.shortName}} - {{method.price | currency:'EUR':'symbol':'1.2-2':'es-ES'}}</strong>
                     <span class="text-sm">{{method.description}}</span>
                 </div>
             </mat-radio-button>

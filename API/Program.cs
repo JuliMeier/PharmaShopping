@@ -22,7 +22,15 @@ builder.Services.AddDbContext<StoreContext>(opt =>
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
         ?? Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
     
-    opt.UseSqlServer(connectionString);
+    opt.UseSqlServer(
+    connectionString,
+    sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 10,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorNumbersToAdd: null);
+    });
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

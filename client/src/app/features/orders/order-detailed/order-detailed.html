@@ -48,7 +48,7 @@
                             </td>
                             <td class="p-4">x{{item.quantity}}</td>
                             <td class="p-4 text-right">
-                                <span>{{item.price | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</span>
+                                <span>{{item.price | currency:'EUR':'symbol':'1.2-2':'es-ES'}}</span>
                             </td>
                         </tr>
                         }
@@ -63,7 +63,7 @@
             <div class="space-y-2">
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="font-medium text-gray-500">Subtotal</dt>
-                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.subtotal | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.subtotal | currency:'EUR':'symbol':'1.2-2':'es-ES'}}</dd>
                 </dl>
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="font-medium text-gray-500">Discount</dt>
@@ -71,11 +71,11 @@
                 </dl>
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="font-medium text-gray-500">Delivery fee</dt>
-                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.shippingPrice| currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.shippingPrice| currency:'EUR':'symbol':'1.2-2':'es-ES'}}</dd>
                 </dl>
                 <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-4">
                     <dt class="font-medium text-gray-500">Total</dt>
-                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.total | currency:'ARS':'symbol':'1.2-2':'es-AR'}}</dd>
+                    <dd class="font-medium" style="color: var(--mat-sys-on-surface)">{{ order.total | currency:'EUR':'symbol':'1.2-2':'es-ES'}}</dd>
                 </dl>
             </div>
         </div>

@@ -4,7 +4,7 @@
         <a [routerLink]="'/shop/' + item().productId">
             <h3 class="text-lg font-semibold">{{ item().productName }}</h3>
         </a>
-        <p class="text-sm text-gray-500">Price: {{ item().price | currency:'ARS':'symbol':'1.2-2':'es-AR' }}</p>
+        <p class="text-sm text-gray-500">Price: {{ item().price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
         <div class="flex items-center align-middle gap-3">
             <button mat-icon-button (click)="decrementQuantity()">
                 <mat-icon>remove</mat-icon>
@@ -15,7 +15,7 @@
             </button>   
         </div>
     </div>
-    <p class="text-lg font-semibold">{{ (item().price * item().quantity) | currency:'ARS':'symbol':'1.2-2':'es-AR' }}
+    <p class="text-lg font-semibold">{{ (item().price * item().quantity) | currency:'EUR':'symbol':'1.2-2':'es-ES' }}
     </p>
     <button mat-icon-button (click)="removeItemFromCart()" style="--mat-icon-button-icon-color: var(--mat-sys-error)">
         <mat-icon>delete</mat-icon>

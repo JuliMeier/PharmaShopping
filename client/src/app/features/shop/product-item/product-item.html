@@ -5,7 +5,7 @@
     </div>
     <mat-card-content class="mt-2 flex-grow flex flex-col justify-between">
         <h2 class="text-sm font-semibold uppercase line-clamp-2 mb-2">{{product.name}}</h2>
-        <p class="font-light text-base">{{product.price | currency:'ARS':'symbol':'1.2-2':'es-AR' }}</p>
+        <p class="font-light text-base">{{product.price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
     </mat-card-content>
     <mat-card-actions (click)="$event.stopPropagation()" >
         <button mat-stroked-button 
