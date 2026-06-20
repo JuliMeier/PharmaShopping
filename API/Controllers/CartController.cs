@@ -30,11 +30,8 @@ public class CartController(ICartService cartService) : BaseApiController
     [HttpDelete]
     public async Task<ActionResult> DeleteCart(string id)
     {
-        var deleted = await cartService.DeleteCartAsync(id);
-        if (!deleted)
-        {
-            return BadRequest("Failed to delete the cart.");
-        }
+        await cartService.DeleteCartAsync(id);
+        
         return NoContent();
     }
 }

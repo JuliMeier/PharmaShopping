@@ -77,10 +77,15 @@ namespace API.Controllers
             {
                 var spec = new OrderSpecification(intent.Id, true);
 
-                var order = await unit.Repository<Order>().GetEntityWithSpec(spec)
-                    ?? throw new Exception("Order not found");
+                var order = await unit.Repository<Order>().GetEntityWithSpec(spec);
 
-                if ((long)order.GetTotal() * 100 != intent.Amount)
+                if (order == null)
+                {
+                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, may not be created yet", intent.Id);
+                    return;
+                }
+
+                if ((long)(order.GetTotal() * 100) != intent.Amount)
                 {
                     order.Status = OrderStatus.PaymentMismatch;
                     //logger.LogWarning("Payment amount mismatch for order {OrderId}", order.Id);

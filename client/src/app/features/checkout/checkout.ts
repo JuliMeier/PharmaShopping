@@ -138,13 +138,6 @@ export class Checkout implements OnInit, OnDestroy {
           throw new Error('Something went wrong with the payment confirmation');
         }
 
-        if (result.error) {
-          throw new Error(result.error.message);
-        } else {
-          this.cartService.deleteCart();
-          this.cartService.selectedDelivery.set(null);
-          this.router.navigateByUrl('/checkout/success');
-        }
       }
     } catch (error: any) {
         this.snackbar.error(error.message || 'An error occurred while confirming payment');
