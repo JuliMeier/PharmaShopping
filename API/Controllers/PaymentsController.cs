@@ -82,11 +82,21 @@ namespace API.Controllers
             {
                 var spec = new OrderSpecification(intent.Id, true);
 
-                var order = await unit.Repository<Order>().GetEntityWithSpec(spec);
+                Order? order = null;
+                const int maxRetries = 5;
+                const int retryDelayMs = 500;
+
+                for (int i = 0; i < maxRetries; i++)
+                {
+                    order = await unit.Repository<Order>().GetEntityWithSpec(spec);
+                    if (order != null) break;
+                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, attempt {Attempt}/{MaxRetries}. Waiting...", intent.Id, i + 1, maxRetries);
+                    await Task.Delay(retryDelayMs);
+                }
 
                 if (order == null)
                 {
-                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, may not be created yet. Stripe will retry.", intent.Id);
+                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId} after {MaxRetries} attempts. Stripe will retry.", intent.Id, maxRetries);
                     return false;
                 }
 
