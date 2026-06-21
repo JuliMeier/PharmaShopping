@@ -53,8 +53,13 @@ namespace API.Controllers
                     return BadRequest("Invalid event data");
                 }
 
-                await HandlePaymentIntentSuccedded(intent);
-                
+                var handled = await HandlePaymentIntentSuccedded(intent);
+
+                if (!handled)
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, "Order not found, Stripe will retry");
+                }
+
                 return Ok();
             }
 
@@ -71,7 +76,7 @@ namespace API.Controllers
             }
         }
 
-        private async Task HandlePaymentIntentSuccedded(PaymentIntent intent)
+        private async Task<bool> HandlePaymentIntentSuccedded(PaymentIntent intent)
         {
             if (intent.Status == "succeeded")
             {
@@ -82,7 +87,7 @@ namespace API.Controllers
                 if (order == null)
                 {
                     logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, may not be created yet. Stripe will retry.", intent.Id);
-                    throw new Exception("Order not found");
+                    return false;
                 }
 
                 if ((long)(order.GetTotal() * 100) != intent.Amount)
@@ -106,6 +111,8 @@ namespace API.Controllers
                         .SendAsync("OrderCompleteNotification", order.ToDto());
                 }
             }
+
+            return true;
         }
 
         private Event ConstructStripeEvent(string json)
