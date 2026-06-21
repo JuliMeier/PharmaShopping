@@ -81,8 +81,8 @@ namespace API.Controllers
 
                 if (order == null)
                 {
-                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, may not be created yet", intent.Id);
-                    return;
+                    logger.LogWarning("Order not found for PaymentIntent {PaymentIntentId}, may not be created yet. Stripe will retry.", intent.Id);
+                    throw new Exception("Order not found");
                 }
 
                 if ((long)(order.GetTotal() * 100) != intent.Amount)

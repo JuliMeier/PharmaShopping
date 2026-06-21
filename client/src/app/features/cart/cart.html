@@ -11,6 +11,11 @@
                 </div>
             </div>
     } @else {
-       <app-empty-state></app-empty-state>
+       <app-empty-state 
+        [message]="'Your shopping cart is empty'"
+        [icon]="'shopping_cart'"
+        [actionText]="'Go shopping!'"
+        (action)="onAction()"
+       ></app-empty-state>
     }
 </section>
