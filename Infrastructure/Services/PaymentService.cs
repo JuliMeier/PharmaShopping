@@ -51,7 +51,7 @@ namespace Infrastructure.Services
             {
                 var options = new Stripe.PaymentIntentCreateOptions
                 {
-                    Amount = (long)cart.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long)shippingPrice * 100,
+                    Amount = (long)cart.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long)(shippingPrice * 100),
                     Currency = "usd",
                     PaymentMethodTypes = ["card"]
                 };
@@ -65,7 +65,7 @@ namespace Infrastructure.Services
             {
                 var options = new Stripe.PaymentIntentUpdateOptions
                 {
-                    Amount = (long)cart.Items.Sum(i => i.Quantity * i.Price * 100) + (long)shippingPrice * 100
+                    Amount = (long)cart.Items.Sum(i => i.Quantity * i.Price * 100) + (long)(shippingPrice * 100)
                 };
 
                 intent = await service.UpdateAsync(cart.PaymentIntentId, options);
