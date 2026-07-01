@@ -30,15 +30,23 @@
         </div>
     </div>
     <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-sm p-4">
-        <form class="space-y-2 flex flex-col p-2" action="">
+        <form class="space-y-2 flex flex-col p-2" (ngSubmit)="applyCouponCode()">
             <label class="mb-2 block text-sm font-medium" for="">
                 Do you have a discount code?
             </label>
+            @if (cartService.cart()?.coupon) {
+                <div class="flex items-center justify-between rounded border border-gray-200 p-2">
+                    <span class="text-sm font-medium text-green-600">{{ cartService.cart()?.coupon?.name }} applied</span>
+                    <button mat-icon-button type="button" (click)="removeCouponCode()">
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                </div>
+            }
             <mat-form-field >
                 <mat-label>Discount code</mat-label>
-                <input type="text" matInput>
+                <input type="text" matInput [(ngModel)]="code" name="code" [disabled]="!!cartService.cart()?.coupon">
             </mat-form-field>
-            <button mat-flat-button color="primary" class="w-full">Apply</button>
+            <button mat-flat-button color="primary" class="w-full" [disabled]="!!cartService.cart()?.coupon">Apply</button>
         </form>
     </div>
 </div>

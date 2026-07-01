@@ -100,7 +100,10 @@ namespace API.Controllers
                     return false;
                 }
 
-                if ((long)(order.GetTotal() * 100) != intent.Amount)
+                var orderTotalInCents = (long)Math.Round(order.GetTotal() * 100,
+                    MidpointRounding.AwayFromZero);
+
+                if (orderTotalInCents != intent.Amount)
                 {
                     order.Status = OrderStatus.PaymentMismatch;
                     //logger.LogWarning("Payment amount mismatch for order {OrderId}", order.Id);

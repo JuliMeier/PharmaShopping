@@ -63,6 +63,7 @@ namespace API.Controllers
                 DeliveryMethod = deliveryMethod,
                 ShippingAddress = orderDto.ShippingAddress,
                 Subtotal = items.Sum(i => i.Price * i.Quantity),
+                Discount = orderDto.Discount,
                 PaymentSummary = orderDto.PaymentSummary,
                 PaymentIntentId = cart.PaymentIntentId,
                 BuyerEmail = email

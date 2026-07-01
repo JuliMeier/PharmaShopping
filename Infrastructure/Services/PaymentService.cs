@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Stripe;
 
 namespace Infrastructure.Services
 {
@@ -16,65 +17,113 @@ namespace Infrastructure.Services
         {
             Stripe.StripeConfiguration.ApiKey = config["StripeSettings:SecretKey"];
 
-            var cart = await cartService.GetCartAsync(cartId);
+            var cart = await cartService.GetCartAsync(cartId)
+                ?? throw new Exception("Cart unavailable");
 
-            if(cart == null) return null;
 
-            var shippingPrice = 0m;
 
-            if (cart.DeliveryMethodId.HasValue)
+            var shippingPrice = await GetShippingPriceAsync(cart) ?? 0;
+
+            await ValidateCartItemsInCartAsync(cart);
+
+            var subtotal = CalculateSubtotal(cart);
+
+            if (cart.Coupon != null)
             {
-                var deliveryMethod = await unit.Repository<DeliveryMethod>().GetByIdAsync((int)cart.DeliveryMethodId);
-
-                if (deliveryMethod == null) return null;
-
-                shippingPrice = deliveryMethod.Price;
+                subtotal = await ApplyDiscountAsync(cart.Coupon, subtotal);
             }
 
-            foreach (var item in cart.Items)
+            var total = subtotal + shippingPrice;
+
+            await CreateUpdatePaymentIntentAsync(cart, total);
+
+            await cartService.SetCartAsync(cart);
+
+            return cart;
+
+        }
+
+        private async Task CreateUpdatePaymentIntentAsync(ShoppingCart cart, long total)
+        {
+            var service = new PaymentIntentService();
+
+            if (string.IsNullOrEmpty(cart.PaymentIntentId))
             {
-                var productItem = await unit.Repository<Product>().GetByIdAsync(item.ProductId);
-
-                if (productItem == null) return null;
-
-                if (item.Price != productItem.Price)
+                var options = new PaymentIntentCreateOptions
                 {
-                    item.Price = productItem.Price;
-                }
-            }
-
-            var service = new Stripe.PaymentIntentService();
-
-            Stripe.PaymentIntent? intent = null;
-
-            if(string.IsNullOrEmpty(cart.PaymentIntentId))
-            {
-                var options = new Stripe.PaymentIntentCreateOptions
-                {
-                    Amount = (long)cart.Items.Sum(i => i.Quantity * (i.Price * 100)) + (long)(shippingPrice * 100),
+                    Amount = total,
                     Currency = "usd",
                     PaymentMethodTypes = ["card"]
                 };
-
-                intent = await service.CreateAsync(options);
-
+                var intent = await service.CreateAsync(options);
                 cart.PaymentIntentId = intent.Id;
                 cart.ClientSecret = intent.ClientSecret;
             }
             else
             {
-                var options = new Stripe.PaymentIntentUpdateOptions
+                var options = new PaymentIntentUpdateOptions
                 {
-                    Amount = (long)cart.Items.Sum(i => i.Quantity * i.Price * 100) + (long)(shippingPrice * 100)
+                    Amount = total
                 };
+                await service.UpdateAsync(cart.PaymentIntentId, options);
+            }
+        }
 
-                intent = await service.UpdateAsync(cart.PaymentIntentId, options);
+        private async Task<long> ApplyDiscountAsync(AppCoupon appCoupon, long amount)
+        {
+            var couponService = new Stripe.CouponService();
+
+            var coupon = await couponService.GetAsync(appCoupon.CouponId);
+
+            if (coupon.AmountOff.HasValue)
+            {
+                amount -= (long)coupon.AmountOff * 100;
             }
 
+            if (coupon.PercentOff.HasValue)
+            {
+                var discount = amount * (coupon.PercentOff.Value / 100);
+                amount -= (long)discount;
+            }
 
-            await cartService.SetCartAsync(cart);
-
-            return cart;
+            return amount;
         }
+
+        private long CalculateSubtotal(ShoppingCart cart)
+        {
+            var itemTotal = cart.Items.Sum(x => x.Quantity * x.Price * 100);
+            return (long)itemTotal;
+        }
+
+        private async Task ValidateCartItemsInCartAsync(ShoppingCart cart)
+        {
+            foreach (var item in cart.Items)
+            {
+                var productItem = await unit.Repository<Domain.Entities.Product>()
+                    .GetByIdAsync(item.ProductId)
+                        ?? throw new Exception("Problem getting product in cart");
+                if (item.Price != productItem.Price)
+                {
+                    item.Price = productItem.Price;
+                }
+            }
+        }
+
+
+        private async Task<long?> GetShippingPriceAsync(ShoppingCart cart)
+        {
+            if (cart.DeliveryMethodId.HasValue)
+            {
+                var deliveryMethod = await unit.Repository<DeliveryMethod>()
+                .GetByIdAsync((int)cart.DeliveryMethodId)
+                ?? throw new Exception("Problem with delivery method");
+                return (long)deliveryMethod.Price * 100;
+            }
+            return null;
+        }
+
+
     }
+
+
 }

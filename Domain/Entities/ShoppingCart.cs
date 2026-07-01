@@ -15,4 +15,6 @@ public class ShoppingCart
 
     public string? PaymentIntentId { get; set; }
 
+    public AppCoupon? Coupon { get; set;}
+
 }
