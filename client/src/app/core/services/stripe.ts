@@ -147,7 +147,7 @@ export class StripeService {
     return this.http.post<ShoppingCart>(this.baseUrl + 'payments/' + cart.id, {}).pipe(
       map(cart => {
         if (!hasClientSecret) {
-          this.cartService.setCart(cart);
+          this.cartService.cart.set(cart);
           return cart;
         }
         return cart;
