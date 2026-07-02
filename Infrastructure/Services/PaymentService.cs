@@ -52,7 +52,7 @@ namespace Infrastructure.Services
                 var options = new PaymentIntentCreateOptions
                 {
                     Amount = total,
-                    Currency = "usd",
+                    Currency = "eur",
                     PaymentMethodTypes = ["card"]
                 };
                 var intent = await service.CreateAsync(options);
@@ -77,7 +77,7 @@ namespace Infrastructure.Services
 
             if (coupon.AmountOff.HasValue)
             {
-                amount -= (long)coupon.AmountOff * 100;
+                amount -= (long)coupon.AmountOff;
             }
 
             if (coupon.PercentOff.HasValue)
@@ -92,7 +92,7 @@ namespace Infrastructure.Services
         private long CalculateSubtotal(ShoppingCart cart)
         {
             var itemTotal = cart.Items.Sum(x => x.Quantity * x.Price * 100);
-            return (long)itemTotal;
+            return (long)Math.Round(itemTotal, MidpointRounding.AwayFromZero);
         }
 
         private async Task ValidateCartItemsInCartAsync(ShoppingCart cart)
