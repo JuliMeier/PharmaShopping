@@ -117,7 +117,7 @@ namespace Infrastructure.Services
                 var deliveryMethod = await unit.Repository<DeliveryMethod>()
                 .GetByIdAsync((int)cart.DeliveryMethodId)
                 ?? throw new Exception("Problem with delivery method");
-                return (long)deliveryMethod.Price * 100;
+                return (long)Math.Round(deliveryMethod.Price * 100, MidpointRounding.AwayFromZero);
             }
             return null;
         }
