@@ -91,8 +91,9 @@ static async Task ApplyMigrationsAndSeedWithRetryAsync(WebApplication app)
         {
             using var scope = app.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
             await context.Database.MigrateAsync();
-            await StoreContextSeed.SeedAsync(context);
+            await StoreContextSeed.SeedAsync(context, userManager);
 
             app.Logger.LogInformation("Database migration and seed completed successfully.");
             return;

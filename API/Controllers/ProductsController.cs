@@ -2,6 +2,7 @@ using API.RequestHelpers;
 using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Specifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -17,7 +18,7 @@ public class ProductsController(IUnitOfWork unit) : BaseApiController
 
        
 
-       return await CreatePagedResource(unit.Repository<Product>(), spec, specParams.PageIndex, specParams.PageSize);
+       return await CreatePagedResult(unit.Repository<Product>(), spec, specParams.PageIndex, specParams.PageSize);
     }
 
     [HttpGet("{id}")]
@@ -31,6 +32,7 @@ public class ProductsController(IUnitOfWork unit) : BaseApiController
         return product;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct(Product product)
     {
@@ -43,6 +45,7 @@ public class ProductsController(IUnitOfWork unit) : BaseApiController
         return BadRequest("Failed to create product.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
     {
@@ -61,6 +64,7 @@ public class ProductsController(IUnitOfWork unit) : BaseApiController
         return BadRequest("Failed to update product.");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {

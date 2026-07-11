@@ -130,6 +130,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --mat-menu-container-color: #ffffff;
 }
 
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #ffffff !important;
+}
+
 
 
 .mat-mdc-select-panel {

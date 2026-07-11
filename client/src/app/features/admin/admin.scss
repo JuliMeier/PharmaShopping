@@ -1,0 +1,104 @@
+// ── Icon colors (M3 deprecó color= en mat-icon) ─────────────────
+.icon-primary {
+  color: var(--pharma-primary) !important;
+}
+
+.icon-warn {
+  color: var(--mat-sys-error) !important;
+}
+
+button[mat-icon-button] {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed !important;
+
+    .mat-icon {
+      color: #9CA3AF !important; // gris neutro
+    }
+  }
+}
+
+// ── Table container ───────────────────────────────────────────
+.table-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+  table {
+    width: 100%;
+  }
+
+  // Header row
+  .mat-mdc-header-row {
+    background-color: var(--pharma-primary);
+
+    .mat-mdc-header-cell {
+      color: var(--pharma-on-primary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: none;
+    }
+  }
+
+  // Data rows
+  .table-row {
+    transition: background-color 0.15s ease;
+
+    &:nth-child(even) {
+      background-color: var(--pharma-light);
+    }
+
+    &:hover {
+      background-color: rgba(15, 110, 86, 0.08);
+    }
+
+    .mat-mdc-cell {
+      border-bottom-color: rgba(0, 0, 0, 0.06);
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// ── Status badges ─────────────────────────────────────────────
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+
+  &.status-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+  }
+
+  &.status-payment-received {
+    background-color: #D1FAE5;
+    color: #065F46;
+  }
+
+  &.status-payment-failed {
+    background-color: #FEE2E2;
+    color: #991B1B;
+  }
+
+  &.status-shipped {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+  }
+
+  &.status-delivered {
+    background-color: #D1FAE5;
+    color: var(--pharma-primary);
+  }
+
+  &.status-refunded {
+    background-color: #F3F4F6;
+    color: #374151;
+  }
+}

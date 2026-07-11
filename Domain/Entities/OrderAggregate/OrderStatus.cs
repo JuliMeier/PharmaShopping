@@ -8,6 +8,8 @@ namespace Domain.Entities.OrderAggregate
         PaymentReceived,
         PaymentFailed,
 
-        PaymentMismatch
+        PaymentMismatch,
+
+        Refunded
     }
 }
