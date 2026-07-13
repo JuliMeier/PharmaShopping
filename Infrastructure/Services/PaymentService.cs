@@ -107,7 +107,7 @@ namespace Infrastructure.Services
             if (coupon.PercentOff.HasValue)
             {
                 var discount = amount * (coupon.PercentOff.Value / 100);
-                amount -= (long)discount;
+                amount -= (long)Math.Round(discount, MidpointRounding.AwayFromZero);
             }
 
             return amount;
